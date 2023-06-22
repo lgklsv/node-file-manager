@@ -1,0 +1,18 @@
+{
+  "name": "node-file-manager",
+  "version": "1.0.0",
+  "description": "Simple node js CLI file manager",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lgklsv/node-file-manager.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "lgklsv",
+  "license": "ISC"
+}
