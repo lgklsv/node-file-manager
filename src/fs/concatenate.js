@@ -12,6 +12,7 @@ export const concatenate = async (input) => {
         reject(err);
       });
       rs.on('close', () => {
+        console.log('\t');
         resolve();
       });
     });
