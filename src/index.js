@@ -3,6 +3,7 @@ import { stdin as input, stdout as output } from 'node:process';
 import { createArgsMap } from './utils/createArgsMap.js';
 import { setHomeDir } from './fs/setHomeDir.js';
 import { listDir } from './fs/listDir.js';
+import { changeDir } from './fs/changeDir.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -20,6 +21,9 @@ rl.on('line', async (input) => {
     case input === 'up':
       process.chdir('..');
       break;
+    case input.startsWith('cd'):
+      await changeDir(input);
+      break;
     case input === 'ls':
       await listDir(curDir);
       break;
@@ -28,7 +32,7 @@ rl.on('line', async (input) => {
       rl.close();
       return;
     default:
-      console.log('Invalid input!');
+      console.log('Invalid input');
   }
   console.log(`You are currently in ${process.cwd()}`);
 });
