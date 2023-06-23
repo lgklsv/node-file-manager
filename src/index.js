@@ -1,8 +1,8 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createArgsMap } from './utils/createArgsMap.js';
-import { setHomeDir } from './setHomeDir.js';
-import { listDir } from './listDir.js';
+import { setHomeDir } from './fs/setHomeDir.js';
+import { listDir } from './fs/listDir.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
