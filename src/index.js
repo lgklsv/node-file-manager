@@ -4,6 +4,7 @@ import { createArgsMap } from './utils/createArgsMap.js';
 import { setHomeDir } from './fs/setHomeDir.js';
 import { listDir } from './fs/listDir.js';
 import { changeDir } from './fs/changeDir.js';
+import { concatenate } from './fs/concatenate.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -23,6 +24,9 @@ rl.on('line', async (input) => {
       break;
     case input.startsWith('cd'):
       await changeDir(input);
+      break;
+    case input.startsWith('cat'):
+      await concatenate(input);
       break;
     case input === 'ls':
       await listDir(curDir);
