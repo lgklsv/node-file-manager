@@ -4,14 +4,14 @@ import { extractPath } from '../utils/extractPath.js';
 export const concatenate = async (input) => {
   try {
     const filePath = extractPath(input);
-    const rs = fs.createReadStream(filePath);
+    const readable = fs.createReadStream(filePath);
 
     await new Promise((resolve, reject) => {
-      rs.pipe(process.stdout);
-      rs.on('error', (err) => {
+      readable.pipe(process.stdout);
+      readable.on('error', (err) => {
         reject(err);
       });
-      rs.on('close', () => {
+      readable.on('close', () => {
         console.log('\t');
         resolve();
       });

@@ -9,6 +9,7 @@ import { addFile } from './fs/addFile.js';
 import { removeFile } from './fs/removeFile.js';
 import { renameFile } from './fs/renameFile.js';
 import { copyFile } from './fs/copyFile.js';
+import { moveFile } from './fs/moveFile.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -40,6 +41,9 @@ rl.on('line', async (input) => {
       break;
     case input.startsWith('cp'):
       await copyFile(input);
+      break;
+    case input.startsWith('mv'):
+      await moveFile(input);
       break;
     case input.startsWith('rm'):
       await removeFile(input);
