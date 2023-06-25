@@ -11,6 +11,7 @@ export const CMD = {
   os: 'os',
   exit: '.exit',
   cmdC: 'SIGINT',
+  hash: 'hash',
 };
 
 export const OS_FLAGS = {

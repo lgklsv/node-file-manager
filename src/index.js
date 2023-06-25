@@ -13,6 +13,7 @@ import { moveFile } from './fs/moveFile.js';
 import { osHandler } from './os/index.js';
 import { CMD } from './const/commands.js';
 import { ERROR_MES } from './const/errors.js';
+import { generateHash } from './hash/index.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -57,6 +58,9 @@ rl.on('line', async (rawInput) => {
       break;
     case input.startsWith(CMD.os):
       await osHandler(input);
+      break;
+    case input.startsWith(CMD.hash):
+      await generateHash(input);
       break;
     case input === CMD.exit:
       console.log(`Thank you for using File Manager, ${username}, goodbye!`);
