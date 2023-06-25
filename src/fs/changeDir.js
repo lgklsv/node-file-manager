@@ -1,3 +1,4 @@
+import { ERROR_MES } from '../const/errors.js';
 import { extractPath } from '../utils/extractPath.js';
 
 export const changeDir = async (input) => {
@@ -5,6 +6,6 @@ export const changeDir = async (input) => {
     const path = extractPath(input);
     process.chdir(path);
   } catch {
-    console.log('Operation failed');
+    console.log(ERROR_MES.operation);
   }
 };

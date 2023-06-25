@@ -3,6 +3,7 @@ import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 
 import { extractTwoPaths } from '../utils/extractTwoPaths.js';
+import { ERROR_MES } from '../const/errors.js';
 
 export const copyFile = async (input) => {
   try {
@@ -16,6 +17,6 @@ export const copyFile = async (input) => {
     await pipeline(readable, writable);
     console.log('File successfully copied');
   } catch {
-    console.log('Operation failed');
+    console.log(ERROR_MES.operation);
   }
 };

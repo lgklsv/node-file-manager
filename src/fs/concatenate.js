@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { extractPath } from '../utils/extractPath.js';
+import { ERROR_MES } from '../const/errors.js';
 
 export const concatenate = async (input) => {
   try {
@@ -17,6 +18,6 @@ export const concatenate = async (input) => {
       });
     });
   } catch {
-    console.log('Operation failed');
+    console.log(ERROR_MES.operation);
   }
 };

@@ -10,6 +10,8 @@ import { removeFile } from './fs/removeFile.js';
 import { renameFile } from './fs/renameFile.js';
 import { copyFile } from './fs/copyFile.js';
 import { moveFile } from './fs/moveFile.js';
+import { osHandler } from './os/entry.js';
+import { CMD } from './const/commands.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -24,34 +26,37 @@ const rl = readline.createInterface({ input, output });
 rl.on('line', async (input) => {
   const curDir = process.cwd();
   switch (true) {
-    case input === 'up':
+    case input === CMD.up:
       process.chdir('..');
       break;
-    case input.startsWith('cd'):
+    case input.startsWith(CMD.cd):
       await changeDir(input);
       break;
-    case input.startsWith('cat'):
+    case input.startsWith(CMD.cat):
       await concatenate(input);
       break;
-    case input.startsWith('add'):
+    case input.startsWith(CMD.add):
       await addFile(input);
       break;
-    case input.startsWith('rn'):
+    case input.startsWith(CMD.rn):
       await renameFile(input);
       break;
-    case input.startsWith('cp'):
+    case input.startsWith(CMD.cp):
       await copyFile(input);
       break;
-    case input.startsWith('mv'):
+    case input.startsWith(CMD.mv):
       await moveFile(input);
       break;
-    case input.startsWith('rm'):
+    case input.startsWith(CMD.rm):
       await removeFile(input);
       break;
-    case input === 'ls':
+    case input === CMD.ls:
       await listDir(curDir);
       break;
-    case input === '.exit':
+    case input === CMD.os:
+      await osHandler(input);
+      break;
+    case input === CMD.exit:
       console.log(`Thank you for using File Manager, ${username}, goodbye!`);
       rl.close();
       return;
@@ -61,7 +66,7 @@ rl.on('line', async (input) => {
   console.log(`You are currently in ${process.cwd()}`);
 });
 
-rl.on('SIGINT', () => {
+rl.on(CMD.cmdC, () => {
   console.log(`Thank you for using File Manager, ${username}, goodbye!`);
   rl.close();
 });

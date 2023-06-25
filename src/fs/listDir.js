@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { ERROR_MES } from '../const/errors.js';
 
 export const listDir = async (curDir) => {
   try {
@@ -25,6 +26,6 @@ export const listDir = async (curDir) => {
 
     console.table(outputFilesData);
   } catch {
-    console.log('Operation failed');
+    console.log(ERROR_MES.operation);
   }
 };

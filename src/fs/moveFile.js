@@ -3,6 +3,7 @@ import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 
 import { extractTwoPaths } from '../utils/extractTwoPaths.js';
+import { ERROR_MES } from '../const/errors.js';
 
 export const moveFile = async (input) => {
   try {
@@ -17,6 +18,6 @@ export const moveFile = async (input) => {
     await fs.promises.rm(fileToMove);
     console.log('File successfully moved');
   } catch {
-    console.log('Operation failed');
+    console.log(ERROR_MES.operation);
   }
 };
