@@ -12,6 +12,8 @@ export const CMD = {
   exit: '.exit',
   cmdC: 'SIGINT',
   hash: 'hash',
+  zip: 'compress',
+  upZip: 'decompress',
 };
 
 export const OS_FLAGS = {

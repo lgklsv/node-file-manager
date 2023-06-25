@@ -11,9 +11,11 @@ import { renameFile } from './fs/renameFile.js';
 import { copyFile } from './fs/copyFile.js';
 import { moveFile } from './fs/moveFile.js';
 import { osHandler } from './os/index.js';
+import { generateHash } from './hash/index.js';
+import { compressFile } from './zip/compress.js';
+import { decompressFile } from './zip/decompress.js';
 import { CMD } from './const/commands.js';
 import { ERROR_MES } from './const/errors.js';
-import { generateHash } from './hash/index.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -61,6 +63,12 @@ rl.on('line', async (rawInput) => {
       break;
     case input.startsWith(CMD.hash):
       await generateHash(input);
+      break;
+    case input.startsWith(CMD.zip):
+      await compressFile(input);
+      break;
+    case input.startsWith(CMD.upZip):
+      await decompressFile(input);
       break;
     case input === CMD.exit:
       console.log(`Thank you for using File Manager, ${username}, goodbye!`);
