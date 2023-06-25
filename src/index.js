@@ -8,6 +8,7 @@ import { concatenate } from './fs/concatenate.js';
 import { addFile } from './fs/addFile.js';
 import { removeFile } from './fs/removeFile.js';
 import { renameFile } from './fs/renameFile.js';
+import { copyFile } from './fs/copyFile.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -36,6 +37,9 @@ rl.on('line', async (input) => {
       break;
     case input.startsWith('rn'):
       await renameFile(input);
+      break;
+    case input.startsWith('cp'):
+      await copyFile(input);
       break;
     case input.startsWith('rm'):
       await removeFile(input);
