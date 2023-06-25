@@ -10,8 +10,9 @@ import { removeFile } from './fs/removeFile.js';
 import { renameFile } from './fs/renameFile.js';
 import { copyFile } from './fs/copyFile.js';
 import { moveFile } from './fs/moveFile.js';
-import { osHandler } from './os/entry.js';
+import { osHandler } from './os/index.js';
 import { CMD } from './const/commands.js';
+import { ERROR_MES } from './const/errors.js';
 
 const processArgsMap = createArgsMap();
 const homedir = setHomeDir();
@@ -23,8 +24,9 @@ console.log(`You are currently in ${homedir}`);
 
 const rl = readline.createInterface({ input, output });
 
-rl.on('line', async (input) => {
+rl.on('line', async (rawInput) => {
   const curDir = process.cwd();
+  const input = rawInput.trim();
   switch (true) {
     case input === CMD.up:
       process.chdir('..');
@@ -53,7 +55,7 @@ rl.on('line', async (input) => {
     case input === CMD.ls:
       await listDir(curDir);
       break;
-    case input === CMD.os:
+    case input.startsWith(CMD.os):
       await osHandler(input);
       break;
     case input === CMD.exit:
@@ -61,7 +63,7 @@ rl.on('line', async (input) => {
       rl.close();
       return;
     default:
-      console.log('Invalid input');
+      console.log(ERROR_MES.input);
   }
   console.log(`You are currently in ${process.cwd()}`);
 });
