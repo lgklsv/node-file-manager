@@ -1,6 +1,9 @@
-export const extractPath = (input) => {
-  const args = input.trim().split(' ');
+import { cleanPaths } from './cleanPaths.js';
 
-  if (args.length !== 2) throw new Error();
-  return args[1];
+export const extractPath = (input) => {
+  const args = input.trim().split(' ').slice(1);
+  let paths = cleanPaths(args);
+
+  if (paths.length !== 1) throw new Error();
+  return paths[0];
 };
